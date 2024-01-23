@@ -7,6 +7,3 @@
 // та в командній стрічці введіть команду 
 // node tests/task2.test.js
 
-$(function(){
-    $("a[href^='https://']").attr('target', '_blank');
-})
