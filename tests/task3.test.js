@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 (async () => {
     const browser = await puppeteer.launch({ headless: "new" });
@@ -18,7 +19,9 @@ const puppeteer = require('puppeteer');
 
     if(firstElement === "DIV" && lastElement === "H3"){
         console.log("Elements is successfully swapped");
+        fs.writeFileSync('tests/task3.result.txt', "Passed");
     }
+
     
     
     await browser.close();

@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 (async () => {
     const browser = await puppeteer.launch({ headless: "new" });
@@ -14,6 +15,9 @@ const puppeteer = require('puppeteer');
 
     if(linkAttribute === "_blank") {
         console.log("The atribute target=_blank is sucessfully applied");
+        fs.writeFileSync('tests/task2.result.txt', "Passed");
+    }else{
+        console.log("Atribute not applied");
     }
     
     

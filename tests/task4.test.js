@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 (async () => {
     const browser = await puppeteer.launch({ headless: "new" });
@@ -27,6 +28,7 @@ const puppeteer = require('puppeteer');
   
     if (isElementDisabled !== null) {
       console.log(`Is the elements disabled? ${isElementDisabled}`);
+      fs.writeFileSync('tests/task4.result.txt', "Passed");
     } else {
       console.log('Element not found');
     }
