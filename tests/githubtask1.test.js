@@ -1,8 +1,7 @@
-const fs = require('fs');
+const fs = require("fs");
 
-test('First task', () => {
-    fs.readFile("githubtask1.result.txt", (err,result) =>{
-        expect(result.toString()).toBe("First+Second")
-    })
-    
+test("First task", () => {
+  fs.readFile("githubtask1.result.txt", "utf8", (err, result) => {
+    expect(result).toBe("First+Second");
   });
+});
