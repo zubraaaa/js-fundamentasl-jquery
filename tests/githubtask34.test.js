@@ -1,10 +1,8 @@
 const fs = require("fs");
 
 test("First task", () => {
-  fs.readFile("task3.result.txt", "utf8", (err, result) => {
-    expect(result).toBe("Passed");
-  });
-  fs.readFile("task4.result.txt", "utf8", (err, result) => {
-    expect(result).toBe("Passed");
-  });
+  const data1 = fs.readFileSync("./tests/task3.result.txt", "utf8");
+  expect(data1).toBe("Passed");
+  const data2 = fs.readFileSync("./tests/task4.result.txt", "utf8");
+  expect(data2).toBe("Passed");
 });
