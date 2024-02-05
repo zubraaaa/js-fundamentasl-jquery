@@ -1,34 +1,31 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+const puppeteer = require("puppeteer");
 
-(async () => {
-    const browser = await puppeteer.launch({ headless: "new" });
+let browser;
+beforeAll(async () => {
+  browser = await puppeteer.launch({ headless: "new" });
+});
 
-    const page = await browser.newPage();
+afterAll(async () => {
+  await browser.close();
+});
 
-    await page.goto('http://127.0.0.1:5500/index.html'); 
-    await page.waitForTimeout(1000);
-    const h2Element = await page.evaluate(() => {
-        const h1Element = document.querySelector('h2.head');
-        return getComputedStyle(h1Element).backgroundColor; 
-      });
+test("First task", async () => {
+  const page = await browser.newPage();
 
-      const spanInnerFontSize = await page.evaluate(() => {
-        const h1Element = document.querySelector('h2 .inner'); 
-        return getComputedStyle(h1Element).fontSize; 
-      });
-      let result = "";
+  const fileUrl = "file://" + __dirname + "/../index.html";
+  await page.goto(fileUrl);
+  await new Promise((r) => setTimeout(r, 1000));
+  const h2Element = await page.evaluate(() => {
+    const h1Element = document.querySelector("h2.head");
+    return getComputedStyle(h1Element).backgroundColor;
+  });
 
-      if(h2Element === 'rgb(0, 128, 0)'){
-        console.log("Green color is applied");
-        result += "First+"
-      }
-      if(spanInnerFontSize === "35px"){
-        console.log("Fontsize 35px is applied");
-        result += "Second"
-      }
-      fs.writeFileSync('tests/githubtask1.result.txt', result);
-    
-    
-    await browser.close();
-})();
+  const spanInnerFontSize = await page.evaluate(() => {
+    const h1Element = document.querySelector("h2 .inner");
+    return getComputedStyle(h1Element).fontSize;
+  });
+
+  expect(h2Element).toEqual("rgb(0, 128, 0)");
+  expect(spanInnerFontSize).toEqual("35px");
+  await browser.close();
+});
