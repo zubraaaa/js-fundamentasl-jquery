@@ -1,9 +1,14 @@
-Complete the all tasks in the files task1, task2, task3 and task4
+Виконайте всі завдання у файлах task1, task2, task3 і task4
 
-Read all the instructions inside the files
+Прочитайте всі інструкції у файлах
 
-To use checking install the dependencies using command:
+Щоб використовувати перевірку, встановіть залежності за допомогою команди:
 
 npm install
 
-Be sure that you have installed the Node js
+Переконайтеся, що ви встановили Node js
+
+Для перервірки усіх виконаних завдань використайте наступну команду
+
+npm test
+
