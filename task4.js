@@ -4,3 +4,9 @@
 // всі чекбокси робить неактивними.
 
 // Завдання виділене вставкою Task4
+// Знаходимо всі чекбокси
+$('input[type="checkbox"]').change(function() {
+    if ($('input[type="checkbox"]:checked').length >= 3) {
+        $('input[type="checkbox"]').prop('disabled', true);
+    }
+});
